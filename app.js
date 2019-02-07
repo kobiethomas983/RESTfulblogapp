@@ -65,7 +65,7 @@ app.get("/blogs/:id", function(req,res){
     //base in object to operate with
     Blog.findById(req.params.id, function(error,foundBlog){
         if(error){
-            //if there is an error redirect them to blog page
+            //if there is an error redirect to the index page 
             res.redirect("/blogs");
         }else{
             res.render("show", {blog:foundBlog});
