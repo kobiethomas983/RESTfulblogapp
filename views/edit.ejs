@@ -1,0 +1,25 @@
+<% include ./partials/header %>
+<div class="ui main text container segment">
+    <div class="ui huge header"><%=blog.title%></div>
+    <!--you have to use ?_method because most frameworks dont recongnize PUT method -->
+    <form class="ui form" action="/blogs/<%=blog._id%>?_method=PUT" method="POST">
+             <!-- blogs is an array that will store this types so we can find them in database -->
+        <div class="field">
+            <label>Title</label>
+            <input type="text" name="blogs[title]" value="<%=blog.title%>">
+        </div>
+        <div class="field">
+            <label>Image</label>
+            <input type="text" name="blogs[image]" value= "<%=blog.image%>">
+        </div>
+        <div class="field">
+            <label>Content</label>
+            <textarea name="blogs[description]"><%=blog.description%></textarea>
+        </div>
+        <input class="ui button"type="submit">
+        <a class="ui primary button" href="/blogs">Home</a>
+    </form>
+</div>
+
+
+<% include ./partials/footer %>

@@ -1,0 +1,23 @@
+<% include ./partials/header %>
+<div class="ui main text container segment">
+    <div class="ui huge header">New Blog</div>
+    <form class="ui form" action="/blogs" method="POST">
+             <!-- blogs is an array that will store this types so we can find them in database -->
+        <div class="field">
+            <label>Title</label>
+            <input type="text" name="blogs[title]" placeholder="Title">
+        </div>
+        <div class="field">
+            <label>Image</label>
+            <input type="text" name="blogs[image]" placeholder="Image url">
+        </div>
+        <div class="field">
+            <label>Content</label>
+            <textarea name="blogs[description]"></textarea>
+        </div>
+        <input class="ui button"type="submit">
+    </form>
+</div>
+
+
+<% include ./partials/footer %>
