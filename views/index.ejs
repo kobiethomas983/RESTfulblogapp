@@ -1,7 +1,7 @@
 <% include ./partials/header%>
 
 <div class="ui main text container">
-    <div class="ui huge header">RESTful Blog App</div>
+    <div class="ui huge header">Blog site</div>
     <div class="ui top  attached segment">
         <div class="ui divided items">
             <% blogs.forEach(function(blog){ %>
@@ -15,7 +15,7 @@
                              <span><%= blog.created.toDateString() %></span>
                          </div>
                          <div class="description">
-                             <p><%= blog.description%>...</p>
+                             <p><%= blog.description.substring(0,100)%>...</p>
                          </div>
                          <div class="extra">
                              <a class="ui floated basic violet button" href="/blogs/<%= blog._id %>">
