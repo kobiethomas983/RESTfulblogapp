@@ -45,7 +45,7 @@ app.get("/blogs/new", function(req, res) {
 //CREATE ROUTE
 app.post("/blogs",function(req,res){
     //so user can't run code in form
-    //req.body.blogs.body = expressSanitizer(req.body.blogs.body);
+    req.body.blogs.description = req.sanitize(req.body.blogs.description);
     //create blog
     Blog.create(req.body.blogs, function(error,newBlog){
         if(error){
@@ -65,7 +65,7 @@ app.get("/blogs/:id", function(req,res){
     //base in object to operate with
     Blog.findById(req.params.id, function(error,foundBlog){
         if(error){
-            //if there is an error redirect to the index page 
+            //if there is an error redirect to the index page
             res.redirect("/blogs");
         }else{
             res.render("show", {blog:foundBlog});
@@ -75,9 +75,6 @@ app.get("/blogs/:id", function(req,res){
 
 //EDIT ROUTE
 app.get("/blogs/:id/edit", function(req,res){
-
-    //so user can't run code in form
-    req.body.description = expressSanitizer(req.body.description);
      //find id to update
     Blog.findById(req.params.id, function(error,foundBlog){
        if(error){
@@ -90,10 +87,12 @@ app.get("/blogs/:id/edit", function(req,res){
 
 
 });
+//UPDATE ROUTE
 app.put("/blogs/:id", function(req,res){
     //use findByIdandUpdate function to change data and find id
     //findByIdAndUpdate(id, update, callback
     //use body when you are taking info from a html file/form
+     req.body.blogs.description = req.sanitize(req.body.blogs.description);
     Blog.findByIdAndUpdate(req.params.id, req.body.blogs, function(error,updatedBlog){
         if(error){
             res.redirect("/blogs");
